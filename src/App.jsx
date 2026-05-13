@@ -22,7 +22,6 @@ const fuzzyMatch = (a, b) => {
   return Math.round((m / longer.length) * 100);
 };
 
-// ── Storage: localStorage bilan ishlaydi, xato bo'lsa in-memory fallback
 const memStore = {};
 const S = {
   get: (k, d = null) => {
@@ -61,7 +60,6 @@ const beep = (t) => {
   } catch {}
 };
 
-// ── CSS: position:fixed olib tashlandi, responsive to'g'rilandi
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -87,7 +85,6 @@ body{
   min-height:100vh;
 }
 
-/* ── Intro: fixed → absolute wrapper ichida */
 .intro-wrap{
   position:fixed;inset:0;
   background:linear-gradient(135deg,#000,#0a0f15);
@@ -111,7 +108,6 @@ body{
 @keyframes barFill{to{width:100%}}
 @keyframes introOut{to{opacity:0;pointer-events:none;visibility:hidden}}
 
-/* ── Layout */
 .app{display:flex;min-height:100vh;position:relative;z-index:1}
 
 .sidebar{
@@ -168,7 +164,6 @@ body{
 }
 @keyframes mainIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 
-/* ── Mobile top bar */
 .mob-topbar{
   display:none;position:sticky;top:0;z-index:150;
   background:rgba(15,20,25,0.97);border-bottom:1px solid var(--border);
@@ -189,7 +184,6 @@ body{
 }
 .mob-xp{font-size:12px;color:var(--gold);font-family:'JetBrains Mono'}
 
-/* ── Bottom nav (mobile) */
 .mob-nav{
   display:none;position:sticky;bottom:0;z-index:150;
   background:rgba(15,20,25,0.98);border-top:1px solid var(--border);
@@ -205,7 +199,6 @@ body{
 .mob-ni.on{color:var(--cyan)}
 .mob-ni .nic{font-size:22px}
 
-/* ── Page titles */
 .ptitle{
   font-family:'Orbitron';font-size:clamp(24px,5vw,36px);font-weight:900;
   background:linear-gradient(135deg,var(--cyan),var(--purple));
@@ -216,7 +209,6 @@ body{
 @keyframes titleIn{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
 .psub{color:var(--text2);font-size:14px;margin-bottom:28px;animation:fadeInUp 0.7s 0.15s ease-out backwards}
 
-/* ── Cards */
 .gc{
   background:var(--glass);border:1px solid var(--border);
   border-radius:20px;padding:22px;transition:all 0.3s;
@@ -286,7 +278,6 @@ body{
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 
-/* ── Buttons */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
   padding:12px 24px;border-radius:13px;border:none;cursor:pointer;
@@ -307,8 +298,9 @@ body{
 .bd{background:rgba(255,56,56,0.13);border:1px solid rgba(255,56,56,0.28);color:var(--red)}
 .bg{background:linear-gradient(135deg,var(--green),#00a84a);color:#000;font-weight:700;box-shadow:0 6px 20px rgba(0,210,106,0.28)}
 .bg:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,210,106,0.4)}
+.bpurp{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-weight:700;box-shadow:0 6px 20px rgba(179,68,255,0.28)}
+.bpurp:hover:not(:disabled){box-shadow:0 10px 30px rgba(179,68,255,0.45);transform:translateY(-2px)}
 
-/* ── Input */
 .inp{
   width:100%;background:var(--glass);border:1px solid var(--border);
   border-radius:13px;padding:14px 18px;color:var(--text);
@@ -321,7 +313,6 @@ body{
 .inp.err{border-color:var(--red);box-shadow:var(--glow-red);animation:shake 0.4s}
 @keyframes shake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-7px)}30%,60%,90%{transform:translateX(7px)}}
 
-/* ── Overlay / Modal */
 .ov{
   position:fixed;inset:0;background:rgba(0,0,0,0.72);
   z-index:1000;display:flex;align-items:center;justify-content:center;
@@ -338,7 +329,6 @@ body{
 }
 @keyframes modalPop{from{opacity:0;transform:scale(0.9) translateY(20px)}to{opacity:1;transform:none}}
 
-/* ── Quiz card */
 .qcard{
   background:var(--glass);border:2px solid var(--border);
   border-radius:22px;padding:28px;text-align:center;
@@ -348,12 +338,10 @@ body{
 .qcard.ok{border-color:var(--green);background:rgba(0,210,106,0.04);box-shadow:var(--glow-green)}
 .qcard.err{border-color:var(--red);background:rgba(255,56,56,0.04);box-shadow:var(--glow-red);animation:shake 0.4s}
 
-/* ── Timer bar */
 .tmr-bg{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-bottom:18px}
 .tmr-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width 1s linear;box-shadow:0 0 8px var(--cyan)}
 .tmr-fill.hot{background:linear-gradient(90deg,var(--red),var(--orange));box-shadow:0 0 12px var(--red)}
 
-/* ── Mic button */
 .mic-btn{
   width:130px;height:130px;border-radius:50%;
   background:radial-gradient(circle,rgba(0,217,255,0.08),transparent);
@@ -369,7 +357,6 @@ body{
 .mic-ring2{position:absolute;inset:-24px;border:1px solid rgba(0,217,255,0.12);border-radius:50%;animation:ringEx 2s 0.5s infinite}
 @keyframes ringEx{0%{opacity:1;transform:scale(0.8)}100%{opacity:0;transform:scale(1.35)}}
 
-/* ── Result score */
 .res-score{
   font-family:'Orbitron';font-size:clamp(56px,12vw,80px);font-weight:900;
   background:linear-gradient(135deg,var(--cyan),var(--purple));
@@ -378,7 +365,6 @@ body{
 }
 @keyframes scorePop{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:none}}
 
-/* ── Ranking */
 .rk-item{
   display:flex;align-items:center;gap:14px;padding:16px 18px;
   border-radius:14px;background:var(--glass);border:1px solid var(--border);
@@ -391,16 +377,15 @@ body{
 .rk-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;color:#000;flex-shrink:0}
 .rk-xp{font-family:'Orbitron';font-size:17px;font-weight:700;color:var(--gold)}
 
-/* ── Badges */
 .bdg{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:18px;font-size:12px;font-weight:700;border:1px solid;animation:cardIn 0.5s ease-out backwards}
 .bdg-c{background:rgba(0,217,255,0.09);border-color:rgba(0,217,255,0.28);color:var(--cyan)}
 .bdg-g{background:rgba(0,210,106,0.09);border-color:rgba(0,210,106,0.28);color:var(--green)}
+.bdg-p{background:rgba(179,68,255,0.09);border-color:rgba(179,68,255,0.28);color:var(--purple)}
+.bdg-r{background:rgba(255,56,56,0.09);border-color:rgba(255,56,56,0.28);color:var(--red)}
 
-/* ── Back btn */
 .back{display:inline-flex;align-items:center;gap:7px;color:var(--text2);cursor:pointer;font-size:14px;margin-bottom:22px;transition:all 0.2s}
 .back:hover{color:var(--cyan);transform:translateX(-4px)}
 
-/* ── XP Popup — absolute not fixed */
 .xp-popup-wrap{position:relative;height:0;overflow:visible;pointer-events:none}
 .xp-popup{
   position:absolute;pointer-events:none;
@@ -411,7 +396,6 @@ body{
 }
 @keyframes xpFloat{0%{opacity:0;transform:translateY(0) scale(0.6)}20%{opacity:1;transform:translateY(-10px) scale(1)}80%{opacity:1;transform:translateY(-55px)}100%{opacity:0;transform:translateY(-90px) scale(0.7)}}
 
-/* ── Notification — relative in a container */
 .notif-container{position:fixed;top:20px;right:20px;z-index:9000;display:flex;flex-direction:column;gap:10px;pointer-events:none}
 .notif{
   background:linear-gradient(135deg,var(--bg2),var(--bg3));
@@ -424,7 +408,97 @@ body{
 @keyframes notifIn{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:none}}
 @keyframes notifOut{to{opacity:0;transform:translateX(80px)}}
 
-/* ── Utility */
+/* ══ TEST PAGE STYLES ══ */
+.test-mode-card{
+  background:var(--glass);border:2px solid var(--border);
+  border-radius:20px;padding:22px;cursor:pointer;
+  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  text-align:center;position:relative;overflow:hidden;
+  animation:cardIn 0.5s ease-out backwards;
+}
+.test-mode-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--cyan);box-shadow:var(--glow-cyan)}
+.test-mode-card.active{border-color:var(--cyan);background:rgba(0,217,255,0.09);box-shadow:var(--glow-cyan)}
+.test-mode-card.active-purple{border-color:var(--purple);background:rgba(179,68,255,0.09);box-shadow:var(--glow-purple)}
+.test-mode-card.active-green{border-color:var(--green);background:rgba(0,210,106,0.09);box-shadow:var(--glow-green)}
+.test-mode-card.active-gold{border-color:var(--gold);background:rgba(255,214,10,0.09);box-shadow:0 0 18px rgba(255,214,10,0.3)}
+.test-mode-icon{font-size:38px;margin-bottom:12px}
+.test-mode-title{font-family:'Orbitron';font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;letter-spacing:1px}
+.test-mode-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* Multiple choice option */
+.mc-opt{
+  background:var(--glass);border:2px solid var(--border);
+  border-radius:14px;padding:16px 20px;cursor:pointer;
+  transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  display:flex;align-items:center;gap:14px;
+  animation:cardIn 0.4s ease-out backwards;
+  font-size:18px;font-weight:600;
+}
+.mc-opt:hover:not(.disabled){border-color:rgba(0,217,255,0.4);background:var(--glass2);transform:translateX(8px)}
+.mc-opt.correct{border-color:var(--green);background:rgba(0,210,106,0.12);box-shadow:var(--glow-green);transform:none}
+.mc-opt.wrong{border-color:var(--red);background:rgba(255,56,56,0.12);box-shadow:var(--glow-red);animation:shake 0.4s}
+.mc-opt.reveal{border-color:var(--green);background:rgba(0,210,106,0.07);transform:none}
+.mc-opt.disabled{cursor:default;opacity:0.6}
+.mc-num{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(0,217,255,0.15),rgba(179,68,255,0.15));
+  border:1px solid rgba(0,217,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron';font-size:12px;color:var(--cyan);font-weight:700;
+}
+
+/* Flash card */
+.flash-card{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border:2px solid var(--border);border-radius:24px;
+  padding:40px 32px;text-align:center;cursor:pointer;
+  min-height:220px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;
+  transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  position:relative;overflow:hidden;
+  animation:cardIn 0.5s ease-out;
+}
+.flash-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(0,217,255,0.08),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.flash-card:hover::before{opacity:1}
+.flash-card:hover{border-color:var(--cyan);box-shadow:var(--glow-cyan);transform:translateY(-4px)}
+.flash-hint{font-size:11px;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
+
+/* Matching game */
+.match-col{display:flex;flex-direction:column;gap:10px}
+.match-item{
+  padding:14px 18px;border-radius:13px;cursor:pointer;
+  border:2px solid var(--border);background:var(--glass);
+  font-size:15px;font-weight:600;text-align:center;
+  transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  min-height:56px;display:flex;align-items:center;justify-content:center;
+  animation:cardIn 0.4s ease-out backwards;
+}
+.match-item:hover:not(.matched):not(.disabled){border-color:var(--cyan);background:var(--glass2);transform:scale(1.03)}
+.match-item.selected{border-color:var(--purple);background:rgba(179,68,255,0.12);box-shadow:var(--glow-purple);transform:scale(1.03)}
+.match-item.matched{border-color:var(--green);background:rgba(0,210,106,0.1);cursor:default;opacity:0.7}
+.match-item.wrong-flash{border-color:var(--red);background:rgba(255,56,56,0.12);animation:shake 0.4s}
+.match-item.disabled{cursor:default}
+
+/* Progress dots */
+.prog-dots{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.prog-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,0.12);transition:all 0.3s;flex-shrink:0;
+}
+.prog-dot.done-ok{background:var(--green);box-shadow:0 0 6px var(--green)}
+.prog-dot.done-err{background:var(--red);box-shadow:0 0 6px var(--red)}
+.prog-dot.current{background:var(--cyan);box-shadow:0 0 8px var(--cyan);transform:scale(1.3)}
+
+/* Streak fire */
+.streak-fire{
+  font-family:'Orbitron';font-size:15px;font-weight:700;
+  color:var(--orange);display:flex;align-items:center;gap:5px;
+}
+
 .f{display:flex}.fc{flex-direction:column}.fw{flex-wrap:wrap}
 .ic{align-items:center}.jb{justify-content:space-between}.jc{justify-content:center}
 .f1{flex:1;min-width:0}.w100{width:100%}.tc{text-align:center}
@@ -435,7 +509,6 @@ body{
 .sm{font-size:12px}.muted{color:var(--text2)}.fw7{font-weight:700}
 .sep{height:1px;background:var(--border);margin:20px 0}
 
-/* ── Responsive */
 @media(max-width:768px){
   :root{--sidebar-w:0px}
   .sidebar{transform:translateX(-100%);width:260px}
@@ -457,7 +530,6 @@ body{
 }
 `;
 
-// ── Progress ring
 function PR({ pct = 0, sz = 80 }) {
   const r = (sz - 6) / 2, c = 2 * Math.PI * r;
   return (
@@ -492,7 +564,786 @@ function Notif({ ic, tx, onDone }) {
   );
 }
 
-// ══════════════ PAGES ══════════════
+// ════════════════════════════════════════
+// TEST PAGE — 4 ta test rejimi
+// ════════════════════════════════════════
+
+// ── Yozma test (Written) ──────────────────────────────
+function WrittenTest({ words, onFinish, onXP, onNotif }) {
+  const [idx, setIdx] = useState(0);
+  const [inp, setInp] = useState("");
+  const [sts, setSts] = useState(null);
+  const [tmr, setTmr] = useState(30);
+  const [results, setResults] = useState([]);
+  const [xpPops, setXpPops] = useState([]);
+  const [streak, setStreak] = useState(0);
+  const [progDots, setProgDots] = useState(words.map(() => "pending"));
+  const inpRef = useRef();
+  const tmrRef = useRef();
+  const stsRef = useRef(null);
+  const xpEarned = useRef(0);
+  const score = useRef(0);
+
+  useEffect(() => {
+    if (sts !== null) return;
+    clearInterval(tmrRef.current);
+    setTmr(30);
+    tmrRef.current = setInterval(() => {
+      setTmr(t => {
+        if (t <= 1) { clearInterval(tmrRef.current); if (stsRef.current === null) submit("", true); return 0; }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(tmrRef.current);
+  }, [idx, sts]);
+
+  const submit = useCallback((answer, fromTimer = false) => {
+    clearInterval(tmrRef.current);
+    if (stsRef.current !== null) return;
+    const w = words[idx];
+    const m = fuzzyMatch(answer, w.kr);
+    const ok = m >= 78;
+    const xp = ok ? 10 : 0;
+    stsRef.current = ok ? "ok" : "err";
+    setSts(ok ? "ok" : "err");
+    setProgDots(d => { const nd = [...d]; nd[idx] = ok ? "done-ok" : "done-err"; return nd; });
+    const newRes = [...results, { w, a: answer, ok, m }];
+    setResults(newRes);
+    if (ok) { score.current++; xpEarned.current += xp; setStreak(s => s + 1); beep("ok"); onXP(xp); const pid = Date.now(); setXpPops(p => [...p, { id: pid, amt: xp }]); setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700); }
+    else { setStreak(0); beep("fail"); }
+    setTimeout(() => {
+      const next = idx + 1;
+      if (next >= words.length) { onFinish({ results: newRes, score: score.current, xp: xpEarned.current }); return; }
+      stsRef.current = null; setSts(null); setInp(""); setTmr(30); setIdx(next);
+      setTimeout(() => inpRef.current?.focus(), 60);
+    }, 1200);
+  }, [idx, words, results, onFinish, onXP]);
+
+  const w = words[idx];
+  const hot = tmr <= 5;
+  return (
+    <div>
+      {xpPops.map(p => <XPPop key={p.id} amt={p.amt} onDone={() => setXpPops(v => v.filter(x => x.id !== p.id))} />)}
+      <div className="f ic jb mb14">
+        <div className="prog-dots">{progDots.map((d, i) => <div key={i} className={`prog-dot${d === "pending" ? (i === idx ? " current" : "") : " " + d}`} />)}</div>
+        <div className="streak-fire">🔥 {streak}</div>
+      </div>
+      <div className="f ic jb mb10">
+        <span className="muted sm">{idx + 1} / {words.length}</span>
+        <span className="fw7" style={{ color: hot ? "var(--red)" : "var(--cyan)", fontSize: 17, fontFamily: "'JetBrains Mono'" }}>{tmr}s</span>
+      </div>
+      <div className="tmr-bg"><div className={`tmr-fill${hot ? " hot" : ""}`} style={{ width: (tmr / 30) * 100 + "%" }} /></div>
+      <div className={`qcard${sts === "ok" ? " ok" : sts === "err" ? " err" : ""}`}>
+        <div className="muted sm mb10">Koreyschasini yozing:</div>
+        <div style={{ fontSize: 38, fontWeight: 700, color: "var(--cyan)", margin: "14px 0" }}>{w.uz}</div>
+        {sts === "ok" && <div style={{ color: "var(--green)", fontWeight: 700, marginTop: 10, fontSize: 22 }}>✅ {w.kr}</div>}
+        {sts === "err" && <div style={{ marginTop: 10 }}><div style={{ color: "var(--red)", fontWeight: 600 }}>❌ Xato</div><div style={{ color: "var(--cyan)", fontSize: 24, fontWeight: 700, marginTop: 6 }}>{w.kr}</div></div>}
+      </div>
+      <input ref={inpRef} className={`inp mb14${sts === "ok" ? " ok" : sts === "err" ? " err" : ""}`}
+        value={inp} onChange={e => setInp(e.target.value)}
+        onKeyDown={e => { if (e.key === "Enter" && !sts && inp.trim()) submit(inp); }}
+        placeholder="한국어로 쓰세요..." disabled={sts !== null}
+        autoComplete="off" autoCapitalize="off" spellCheck={false}
+        style={{ fontSize: 20, textAlign: "center", marginTop: 14 }} />
+      <button className="btn bp w100" style={{ padding: 15, fontSize: 15 }}
+        disabled={sts !== null || !inp.trim()} onClick={() => submit(inp)}>Tekshirish ✓</button>
+    </div>
+  );
+}
+
+// ── Test ikki tomonlama (UZ→KR va KR→UZ aralash) ────
+function BidirectionalTest({ words, onFinish, onXP }) {
+  // So'zlarni ikki yo'nalishda aralashtiradi
+  const [questions] = useState(() => {
+    const q = [];
+    words.forEach(w => {
+      q.push({ w, dir: "uz2kr" });  // O'zbek → Koreys
+      q.push({ w, dir: "kr2uz" });  // Koreys → O'zbek
+    });
+    return q.sort(() => Math.random() - 0.5).slice(0, Math.min(words.length * 2, 30));
+  });
+  const [idx, setIdx] = useState(0);
+  const [inp, setInp] = useState("");
+  const [sts, setSts] = useState(null);
+  const [results, setResults] = useState([]);
+  const [xpPops, setXpPops] = useState([]);
+  const [streak, setStreak] = useState(0);
+  const [progDots, setProgDots] = useState(questions.map(() => "pending"));
+  const inpRef = useRef();
+  const stsRef = useRef(null);
+  const xpEarned = useRef(0);
+  const score = useRef(0);
+
+  const submit = useCallback((answer) => {
+    if (stsRef.current !== null) return;
+    const { w, dir } = questions[idx];
+    const correct = dir === "uz2kr" ? w.kr : w.uz;
+    const m = fuzzyMatch(answer, correct);
+    const ok = m >= 75;
+    const xp = ok ? 12 : 0;
+    stsRef.current = ok ? "ok" : "err";
+    setSts(ok ? "ok" : "err");
+    setProgDots(d => { const nd = [...d]; nd[idx] = ok ? "done-ok" : "done-err"; return nd; });
+    const newRes = [...results, { w, dir, a: answer, ok, m }];
+    setResults(newRes);
+    if (ok) { score.current++; xpEarned.current += xp; setStreak(s => s + 1); beep("ok"); onXP(xp); const pid = Date.now(); setXpPops(p => [...p, { id: pid, amt: xp }]); setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700); }
+    else { setStreak(0); beep("fail"); }
+    setTimeout(() => {
+      const next = idx + 1;
+      if (next >= questions.length) { onFinish({ results: newRes, score: score.current, xp: xpEarned.current }); return; }
+      stsRef.current = null; setSts(null); setInp(""); setIdx(next);
+      setTimeout(() => inpRef.current?.focus(), 60);
+    }, 1300);
+  }, [idx, questions, results, onFinish, onXP]);
+
+  const { w, dir } = questions[idx];
+  const question = dir === "uz2kr" ? w.uz : w.kr;
+  const answer = dir === "uz2kr" ? w.kr : w.uz;
+  const placeholder = dir === "uz2kr" ? "한국어로 쓰세요..." : "O'zbekcha yozing...";
+  const label = dir === "uz2kr" ? "🇰🇷 Koreyschasini yozing:" : "🇺🇿 O'zbekcha tarjimasi:";
+
+  return (
+    <div>
+      {xpPops.map(p => <XPPop key={p.id} amt={p.amt} onDone={() => setXpPops(v => v.filter(x => x.id !== p.id))} />)}
+      <div className="f ic jb mb14">
+        <div className="prog-dots">{progDots.map((d, i) => <div key={i} className={`prog-dot${d === "pending" ? (i === idx ? " current" : "") : " " + d}`} />)}</div>
+        <div className="streak-fire">🔥 {streak}</div>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        <span className="muted sm">{idx + 1} / {questions.length}</span>
+        <span className="bdg" style={{ background: dir === "uz2kr" ? "rgba(0,217,255,0.09)" : "rgba(179,68,255,0.09)", borderColor: dir === "uz2kr" ? "rgba(0,217,255,0.28)" : "rgba(179,68,255,0.28)", color: dir === "uz2kr" ? "var(--cyan)" : "var(--purple)", fontSize: 11 }}>
+          {dir === "uz2kr" ? "🇺🇿→🇰🇷" : "🇰🇷→🇺🇿"}
+        </span>
+      </div>
+      <div className={`qcard${sts === "ok" ? " ok" : sts === "err" ? " err" : ""}`}>
+        <div className="muted sm mb10">{label}</div>
+        <div style={{ fontSize: 34, fontWeight: 700, color: "var(--cyan)", margin: "14px 0" }}>{question}</div>
+        {sts === "ok" && <div style={{ color: "var(--green)", fontWeight: 700, marginTop: 10, fontSize: 20 }}>✅ {answer}</div>}
+        {sts === "err" && <div style={{ marginTop: 10 }}><div style={{ color: "var(--red)", fontWeight: 600 }}>❌ Xato</div><div style={{ color: "var(--cyan)", fontSize: 22, fontWeight: 700, marginTop: 6 }}>{answer}</div></div>}
+      </div>
+      <input ref={inpRef} className={`inp mb14${sts === "ok" ? " ok" : sts === "err" ? " err" : ""}`}
+        value={inp} onChange={e => setInp(e.target.value)}
+        onKeyDown={e => { if (e.key === "Enter" && !sts && inp.trim()) submit(inp); }}
+        placeholder={placeholder} disabled={sts !== null}
+        autoComplete="off" autoCapitalize="off" spellCheck={false}
+        style={{ fontSize: 20, textAlign: "center", marginTop: 14 }} />
+      <button className="btn bpurp w100" style={{ padding: 15, fontSize: 15 }}
+        disabled={sts !== null || !inp.trim()} onClick={() => submit(inp)}>Tekshirish ✓</button>
+    </div>
+  );
+}
+
+// ── Ko'p tanlovli test (Multiple Choice) ──────────────
+function MultipleChoiceTest({ words, allWords, onFinish, onXP }) {
+  const buildQuestions = () => {
+    return words.map(w => {
+      const pool = allWords.filter(x => x.id !== w.id);
+      const shuffled = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+      const opts = [...shuffled, w].sort(() => Math.random() - 0.5);
+      return { w, opts };
+    });
+  };
+  const [questions] = useState(buildQuestions);
+  const [idx, setIdx] = useState(0);
+  const [chosen, setChosen] = useState(null);
+  const [results, setResults] = useState([]);
+  const [xpPops, setXpPops] = useState([]);
+  const [streak, setStreak] = useState(0);
+  const [progDots, setProgDots] = useState(words.map(() => "pending"));
+  const xpEarned = useRef(0);
+  const score = useRef(0);
+
+  const choose = useCallback((opt) => {
+    if (chosen !== null) return;
+    const { w } = questions[idx];
+    const ok = opt.id === w.id;
+    const xp = ok ? 8 : 0;
+    setChosen(opt.id);
+    setProgDots(d => { const nd = [...d]; nd[idx] = ok ? "done-ok" : "done-err"; return nd; });
+    const newRes = [...results, { w, chosen: opt, ok }];
+    setResults(newRes);
+    if (ok) { score.current++; xpEarned.current += xp; setStreak(s => s + 1); beep("ok"); onXP(xp); const pid = Date.now(); setXpPops(p => [...p, { id: pid, amt: xp }]); setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700); }
+    else { setStreak(0); beep("fail"); }
+    setTimeout(() => {
+      const next = idx + 1;
+      if (next >= questions.length) { onFinish({ results: newRes, score: score.current, xp: xpEarned.current }); return; }
+      setChosen(null); setIdx(next);
+    }, 1500);
+  }, [chosen, idx, questions, results, onFinish, onXP]);
+
+  const { w, opts } = questions[idx];
+  const labels = ["A", "B", "C", "D"];
+
+  return (
+    <div>
+      {xpPops.map(p => <XPPop key={p.id} amt={p.amt} onDone={() => setXpPops(v => v.filter(x => x.id !== p.id))} />)}
+      <div className="f ic jb mb14">
+        <div className="prog-dots">{progDots.map((d, i) => <div key={i} className={`prog-dot${d === "pending" ? (i === idx ? " current" : "") : " " + d}`} />)}</div>
+        <div className="streak-fire">🔥 {streak}</div>
+      </div>
+      <div className="f ic jb mb12">
+        <span className="muted sm">{idx + 1} / {questions.length}</span>
+        <span className="bdg bdg-g">Ko'p tanlov</span>
+      </div>
+      <div className="qcard" style={{ marginBottom: 24 }}>
+        <div className="muted sm mb10">Bu so'zning koreyschasini toping:</div>
+        <div style={{ fontSize: 38, fontWeight: 700, color: "var(--cyan)", margin: "14px 0" }}>{w.uz}</div>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {opts.map((opt, i) => {
+          let cls = "mc-opt";
+          if (chosen !== null) {
+            if (opt.id === w.id) cls += " correct";
+            else if (opt.id === chosen) cls += " wrong";
+            else cls += " disabled";
+          }
+          return (
+            <div key={opt.id} className={cls} style={{ animationDelay: (i * 0.07) + "s" }}
+              onClick={() => choose(opt)}>
+              <div className="mc-num">{labels[i]}</div>
+              <span style={{ flex: 1, fontSize: 20 }}>{opt.kr}</span>
+              {chosen !== null && opt.id === w.id && <span style={{ fontSize: 20 }}>✅</span>}
+              {chosen !== null && opt.id === chosen && opt.id !== w.id && <span style={{ fontSize: 20 }}>❌</span>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── Flash Cards (Flashcard — flip va baholash) ────────
+function FlashCardTest({ words, onFinish, onXP }) {
+  const [idx, setIdx] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [results, setResults] = useState([]);
+  const [xpPops, setXpPops] = useState([]);
+  const [progDots, setProgDots] = useState(words.map(() => "pending"));
+  const [streak, setStreak] = useState(0);
+  const xpEarned = useRef(0);
+  const score = useRef(0);
+
+  const judge = useCallback((ok) => {
+    const w = words[idx];
+    const xp = ok ? 6 : 0;
+    setProgDots(d => { const nd = [...d]; nd[idx] = ok ? "done-ok" : "done-err"; return nd; });
+    const newRes = [...results, { w, ok }];
+    setResults(newRes);
+    if (ok) { score.current++; xpEarned.current += xp; setStreak(s => s + 1); beep("ok"); onXP(xp); const pid = Date.now(); setXpPops(p => [...p, { id: pid, amt: xp }]); setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700); }
+    else { setStreak(0); beep("fail"); }
+    const next = idx + 1;
+    if (next >= words.length) { onFinish({ results: newRes, score: score.current, xp: xpEarned.current }); return; }
+    setFlipped(false); setIdx(next);
+  }, [idx, words, results, onFinish, onXP]);
+
+  const w = words[idx];
+
+  return (
+    <div>
+      {xpPops.map(p => <XPPop key={p.id} amt={p.amt} onDone={() => setXpPops(v => v.filter(x => x.id !== p.id))} />)}
+      <div className="f ic jb mb14">
+        <div className="prog-dots">{progDots.map((d, i) => <div key={i} className={`prog-dot${d === "pending" ? (i === idx ? " current" : "") : " " + d}`} />)}</div>
+        <div className="streak-fire">🔥 {streak}</div>
+      </div>
+      <div className="f ic jb mb12">
+        <span className="muted sm">{idx + 1} / {words.length}</span>
+        <span className="bdg bdg-c">Flash kartalar</span>
+      </div>
+      <div className="flash-card" onClick={() => setFlipped(f => !f)}
+        style={{
+          background: flipped
+            ? "linear-gradient(135deg,rgba(0,217,255,0.08),rgba(179,68,255,0.08))"
+            : "linear-gradient(135deg,var(--bg2),var(--bg3))",
+          borderColor: flipped ? "var(--cyan)" : "var(--border)",
+        }}>
+        <div className="flash-hint">{flipped ? "✨ Tarjima" : "👆 Bosing — pastini ko'ring"}</div>
+        {!flipped ? (
+          <div style={{ fontSize: 42, fontWeight: 700, color: "var(--cyan)" }}>{w.uz}</div>
+        ) : (
+          <>
+            <div style={{ fontSize: 42, fontWeight: 700, color: "var(--cyan)" }}>{w.kr}</div>
+            <div style={{ fontSize: 20, color: "var(--text2)" }}>{w.uz}</div>
+          </>
+        )}
+        {!flipped && <div className="muted sm" style={{ fontSize: 11 }}>Javobni ko'rish uchun bosing</div>}
+      </div>
+      {flipped && (
+        <div className="f gap12 mt16">
+          <button className="btn bd f1" style={{ padding: 15, fontSize: 14 }} onClick={() => judge(false)}>❌ Bilmadim</button>
+          <button className="btn bg f1" style={{ padding: 15, fontSize: 14 }} onClick={() => judge(true)}>✅ Bildim!</button>
+        </div>
+      )}
+      {!flipped && (
+        <div className="f gap12 mt16">
+          <button className="btn bs w100" style={{ padding: 14 }} onClick={() => setFlipped(true)}>Javobni ko'rish 👁</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Moslashtirish o'yini (Matching) ──────────────────
+function MatchingTest({ words, onFinish, onXP }) {
+  const BATCH = 6; // Bir vaqtda 6 ta so'z (3 juft)
+  const batches = [];
+  for (let i = 0; i < words.length; i += BATCH) batches.push(words.slice(i, i + BATCH));
+
+  const [batchIdx, setBatchIdx] = useState(0);
+  const [matched, setMatched] = useState([]);
+  const [selLeft, setSelLeft] = useState(null);
+  const [selRight, setSelRight] = useState(null);
+  const [wrongPair, setWrongPair] = useState(null);
+  const [totalScore, setTotalScore] = useState(0);
+  const [totalXP, setTotalXP] = useState(0);
+  const [xpPops, setXpPops] = useState([]);
+  const [allResults, setAllResults] = useState([]);
+
+  const batch = batches[batchIdx] || [];
+  const [leftItems] = useState(() => batch.map(w => ({ id: w.id, text: w.uz, wid: w.id })));
+  const [rightItems] = useState(() => [...batch].sort(() => Math.random() - 0.5).map(w => ({ id: "r" + w.id, text: w.kr, wid: w.id })));
+
+  // Batch o'zgarganda state reset
+  const [batchState, setBatchState] = useState({ left: [], right: [], matched: [] });
+  useEffect(() => {
+    const b = batches[batchIdx] || [];
+    setBatchState({
+      left: b.map(w => ({ id: w.id, text: w.uz, wid: w.id })),
+      right: [...b].sort(() => Math.random() - 0.5).map(w => ({ id: "r" + w.id, text: w.kr, wid: w.id })),
+      matched: [],
+    });
+    setSelLeft(null); setSelRight(null); setWrongPair(null);
+  }, [batchIdx]);
+
+  const { left, right, matched: matchedIds } = batchState;
+
+  const tryMatch = useCallback((side, item) => {
+    if (matchedIds.includes(item.wid)) return;
+    if (side === "left") {
+      setSelLeft(item);
+      if (selRight) {
+        const ok = item.wid === selRight.wid;
+        if (ok) {
+          beep("ok");
+          const xp = 5;
+          onXP(xp);
+          setTotalXP(x => x + xp);
+          setTotalScore(s => s + 1);
+          const pid = Date.now();
+          setXpPops(p => [...p, { id: pid, amt: xp }]);
+          setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700);
+          setBatchState(bs => ({ ...bs, matched: [...bs.matched, item.wid] }));
+          setSelLeft(null); setSelRight(null);
+          if (matchedIds.length + 1 >= left.length) {
+            setTimeout(() => nextBatch([...allResults, ...left.map(l => ({ w: batches[batchIdx].find(w => w.id === l.wid), ok: true }))]), 600);
+          }
+        } else {
+          beep("fail");
+          setWrongPair({ l: item.id, r: selRight.id });
+          setTimeout(() => { setWrongPair(null); setSelLeft(null); setSelRight(null); }, 700);
+        }
+      }
+    } else {
+      setSelRight(item);
+      if (selLeft) {
+        const ok = selLeft.wid === item.wid;
+        if (ok) {
+          beep("ok");
+          const xp = 5;
+          onXP(xp);
+          setTotalXP(x => x + xp);
+          setTotalScore(s => s + 1);
+          const pid = Date.now();
+          setXpPops(p => [...p, { id: pid, amt: xp }]);
+          setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700);
+          setBatchState(bs => ({ ...bs, matched: [...bs.matched, item.wid] }));
+          setSelLeft(null); setSelRight(null);
+          if (matchedIds.length + 1 >= left.length) {
+            const newRes = [...allResults, ...left.map(l => ({ w: batches[batchIdx].find(w => w.id === l.wid), ok: true }))];
+            setTimeout(() => nextBatch(newRes), 600);
+          }
+        } else {
+          beep("fail");
+          setWrongPair({ l: selLeft.id, r: item.id });
+          setTimeout(() => { setWrongPair(null); setSelLeft(null); setSelRight(null); }, 700);
+        }
+      }
+    }
+  }, [selLeft, selRight, matchedIds, left, allResults, batchIdx]);
+
+  const nextBatch = (newRes) => {
+    setAllResults(newRes);
+    if (batchIdx + 1 >= batches.length) {
+      onFinish({ results: newRes, score: newRes.filter(r => r.ok).length, xp: totalXP + (newRes.filter(r => r.ok).length * 5) });
+    } else {
+      setBatchIdx(b => b + 1);
+    }
+  };
+
+  const pct = words.length > 0 ? Math.round((batchIdx / batches.length) * 100) : 0;
+
+  return (
+    <div>
+      {xpPops.map(p => <XPPop key={p.id} amt={p.amt} onDone={() => setXpPops(v => v.filter(x => x.id !== p.id))} />)}
+      <div className="f ic jb mb14">
+        <span className="muted sm">Guruh {batchIdx + 1} / {batches.length}</span>
+        <span className="bdg bdg-p">Moslashtirish</span>
+      </div>
+      <div className="tmr-bg mb16"><div className="tmr-fill" style={{ width: pct + "%" }} /></div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+        <div className="match-col">
+          <div className="muted sm mb8 tc">🇺🇿 O'zbek</div>
+          {left.map((item, i) => {
+            const isMatched = matchedIds.includes(item.wid);
+            const isSel = selLeft?.id === item.id;
+            const isWrong = wrongPair?.l === item.id;
+            let cls = "match-item";
+            if (isMatched) cls += " matched";
+            else if (isWrong) cls += " wrong-flash";
+            else if (isSel) cls += " selected";
+            return (
+              <div key={item.id} className={cls} style={{ animationDelay: (i * 0.06) + "s" }}
+                onClick={() => !isMatched && tryMatch("left", item)}>
+                {item.text}
+              </div>
+            );
+          })}
+        </div>
+        <div className="match-col">
+          <div className="muted sm mb8 tc">🇰🇷 Koreys</div>
+          {right.map((item, i) => {
+            const isMatched = matchedIds.includes(item.wid);
+            const isSel = selRight?.id === item.id;
+            const isWrong = wrongPair?.r === item.id;
+            let cls = "match-item";
+            if (isMatched) cls += " matched";
+            else if (isWrong) cls += " wrong-flash";
+            else if (isSel) cls += " selected";
+            return (
+              <div key={item.id} className={cls} style={{ animationDelay: (i * 0.06) + "s" }}
+                onClick={() => !isMatched && tryMatch("right", item)}>
+                {item.text}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Ovozli test ───────────────────────────────────────
+function VoiceTest({ words, onFinish, onXP, onNotif }) {
+  const [idx, setIdx] = useState(0);
+  const [listening, setListening] = useState(false);
+  const [voiceTx, setVoiceTx] = useState(null);
+  const [voiceScore, setVoiceScore] = useState(null);
+  const [sts, setSts] = useState(null);
+  const [results, setResults] = useState([]);
+  const [xpPops, setXpPops] = useState([]);
+  const [streak, setStreak] = useState(0);
+  const [progDots, setProgDots] = useState(words.map(() => "pending"));
+  const stsRef = useRef(null);
+  const xpEarned = useRef(0);
+  const score = useRef(0);
+
+  const startVoice = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { onNotif("❌", "Brauzer ovozni qo'llab-quvvatlamaydi"); return; }
+    const rec = new SR();
+    rec.lang = "ko-KR"; rec.interimResults = false;
+    setListening(true); setVoiceTx(null); setVoiceScore(null);
+    rec.onresult = e => {
+      const tx = e.results[0][0].transcript;
+      const sc = fuzzyMatch(tx, words[idx]?.kr || "");
+      setVoiceTx(tx); setVoiceScore(sc); setListening(false);
+    };
+    rec.onerror = () => { setListening(false); onNotif("❌", "Mikrofon xatosi"); };
+    rec.onend = () => setListening(false);
+    try { rec.start(); } catch { onNotif("❌", "Mikrofon ochilmadi"); }
+  };
+
+  const submitVoice = useCallback((tx) => {
+    if (stsRef.current !== null) return;
+    const w = words[idx];
+    const m = fuzzyMatch(tx, w.kr);
+    const ok = m >= 70;
+    const xp = ok ? 10 : 0;
+    stsRef.current = ok ? "ok" : "err";
+    setSts(ok ? "ok" : "err");
+    setProgDots(d => { const nd = [...d]; nd[idx] = ok ? "done-ok" : "done-err"; return nd; });
+    const newRes = [...results, { w, a: tx, ok, m }];
+    setResults(newRes);
+    if (ok) { score.current++; xpEarned.current += xp; setStreak(s => s + 1); beep("ok"); onXP(xp); const pid = Date.now(); setXpPops(p => [...p, { id: pid, amt: xp }]); setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700); }
+    else { setStreak(0); beep("fail"); }
+    setTimeout(() => {
+      const next = idx + 1;
+      if (next >= words.length) { onFinish({ results: newRes, score: score.current, xp: xpEarned.current }); return; }
+      stsRef.current = null; setSts(null); setVoiceTx(null); setVoiceScore(null); setIdx(next);
+    }, 1400);
+  }, [idx, words, results, onFinish, onXP]);
+
+  const w = words[idx];
+
+  return (
+    <div>
+      {xpPops.map(p => <XPPop key={p.id} amt={p.amt} onDone={() => setXpPops(v => v.filter(x => x.id !== p.id))} />)}
+      <div className="f ic jb mb14">
+        <div className="prog-dots">{progDots.map((d, i) => <div key={i} className={`prog-dot${d === "pending" ? (i === idx ? " current" : "") : " " + d}`} />)}</div>
+        <div className="streak-fire">🔥 {streak}</div>
+      </div>
+      <div className="f ic jb mb12">
+        <span className="muted sm">{idx + 1} / {words.length}</span>
+        <span className="bdg bdg-c">Ovozli</span>
+      </div>
+      <div className={`qcard${sts === "ok" ? " ok" : sts === "err" ? " err" : ""}`}>
+        <div className="muted sm mb10">Bu so'zni koreyscha ayting:</div>
+        <div style={{ fontSize: 38, fontWeight: 700, color: "var(--cyan)", margin: "16px 0" }}>{w.uz}</div>
+        {sts === "ok" && <div style={{ color: "var(--green)", fontWeight: 700, fontSize: 20 }}>✅ {w.kr}</div>}
+        {sts === "err" && <div style={{ color: "var(--red)", fontWeight: 600 }}>❌ To'g'risi: <span style={{ color: "var(--cyan)" }}>{w.kr}</span></div>}
+      </div>
+      <div className="f fc ic gap16" style={{ padding: "24px 0" }}>
+        <div className={`mic-btn${listening ? " listening" : ""}`}
+          onClick={!listening && !voiceTx && !sts ? startVoice : undefined}>
+          <div className="mic-ring" /><div className="mic-ring2" />
+          <span style={{ position: "relative", zIndex: 1 }}>{listening ? "🔴" : "🎤"}</span>
+        </div>
+        {listening && <div className="muted sm">Eshitilmoqda...</div>}
+        {voiceTx && !sts && (
+          <div className="gc" style={{ width: "100%", maxWidth: 380 }}>
+            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 10, color: "var(--cyan)" }}>{voiceTx}</div>
+            <div className="muted sm mb10">Moslik: {voiceScore}%</div>
+            <div className="tmr-bg">
+              <div className="tmr-fill" style={{ width: voiceScore + "%", background: voiceScore >= 70 ? "linear-gradient(90deg,var(--green),#00a84a)" : "linear-gradient(90deg,var(--red),#ff6b6b)" }} />
+            </div>
+            <div style={{ color: voiceScore >= 70 ? "var(--green)" : "var(--red)", fontWeight: 600, marginBottom: 14 }}>
+              {voiceScore >= 90 ? "🌟 Mukammal!" : voiceScore >= 70 ? "👍 Yaxshi" : "❌ Qayta urinib ko'ring"}
+            </div>
+            <div className="f gap10 fw">
+              <button className="btn bg f1" onClick={() => submitVoice(voiceTx)}>Tasdiqlash ✓</button>
+              <button className="btn bs f1" onClick={() => { setVoiceTx(null); setVoiceScore(null); }}>Qayta 🔄</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Natija ekrani ─────────────────────────────────────
+function TestResult({ results, score, xp, total, mode, onRetry, onBack }) {
+  const pct = total > 0 ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 90 ? { l: "🌟 Ajoyib!", c: "var(--gold)" } : pct >= 75 ? { l: "🎉 A'lo", c: "var(--green)" } : pct >= 60 ? { l: "👍 Yaxshi", c: "var(--cyan)" } : { l: "💪 Davom et", c: "var(--orange)" };
+  return (
+    <div>
+      <div className="ptitle">Natija</div>
+      <div className="gc mb20 tc" style={{ padding: "36px 0" }}>
+        <div className="res-score">{pct}%</div>
+        <div className="muted sm mt12">{score} / {total} to'g'ri javob</div>
+        <div style={{ fontSize: 28, fontWeight: 700, color: grade.c, marginTop: 12 }}>{grade.l}</div>
+        <div className="f jc gap12 mt16 fw">
+          <span className="bdg bdg-g">+{xp} XP</span>
+          <span className="bdg bdg-c">{mode}</span>
+        </div>
+        <div style={{ marginTop: 24 }}><PR pct={pct} sz={90} /></div>
+      </div>
+      {results && results.length > 0 && (
+        <div className="gc mb20">
+          <div className="fw7 mb14">Batafsil natijalar</div>
+          {results.slice(0, 20).map((r, i) => (
+            <div key={i} className="f ic gap10 mb8" style={{
+              padding: "10px 14px", borderRadius: 11,
+              background: r.ok ? "rgba(0,210,106,.07)" : "rgba(255,56,56,.07)",
+              border: `1px solid ${r.ok ? "rgba(0,210,106,.2)" : "rgba(255,56,56,.2)"}`,
+              animation: "cardIn 0.5s ease-out backwards",
+              animationDelay: (i * 0.03) + "s",
+            }}>
+              <span style={{ fontSize: 16 }}>{r.ok ? "✅" : "❌"}</span>
+              <span className="f1 sm">{r.w?.uz}</span>
+              <span className="fw7" style={{ color: "var(--cyan)", fontSize: 13 }}>{r.w?.kr}</span>
+              {!r.ok && r.a && <span className="muted sm">→ {r.a}</span>}
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="f gap12">
+        <button className="btn bp f1" onClick={onRetry}>🔄 Qaytadan</button>
+        <button className="btn bs f1" onClick={onBack}>← Ortga</button>
+      </div>
+    </div>
+  );
+}
+
+// ── Test Page bosh komponenti ─────────────────────────
+function TestPage({ stats, onUpdateStats, onXP, onNotif }) {
+  const [phase, setPhase] = useState("setup"); // setup | running | result
+  const [lvl, setLvl] = useState("1A");
+  const [kva, setKva] = useState(null);
+  const [mode, setMode] = useState(null); // written | bidirectional | choice | flash | matching | voice
+  const [words, setWords] = useState([]);
+  const [result, setResult] = useState(null);
+
+  const MODES = [
+    { id: "written", icon: "✍️", title: "Yozma", desc: "So'z tarjimasini koreyscha yozing", color: "active", xp: "10 XP/to'g'ri" },
+    { id: "bidirectional", icon: "🔄", title: "Ikki tomoni", desc: "UZ→KR va KR→UZ aralash savolar", color: "active-purple", xp: "12 XP/to'g'ri" },
+    { id: "choice", icon: "🎯", title: "Ko'p tanlov", desc: "4 variant ichidan to'g'risini toping", color: "active-green", xp: "8 XP/to'g'ri" },
+    { id: "flash", icon: "⚡", title: "Flash kartalar", desc: "Kartani aylantirib o'zingizni baholang", color: "active-gold", xp: "6 XP/to'g'ri" },
+    { id: "matching", icon: "🧩", title: "Moslashtirish", desc: "O'zbek va koreys so'zlarni juftlang", color: "active-purple", xp: "5 XP/juft" },
+    { id: "voice", icon: "🎤", title: "Ovozli", desc: "So'zni koreyscha aytib bering", color: "active", xp: "10 XP/to'g'ri" },
+  ];
+
+  const getAllWords = () => {
+    const arr = [];
+    Object.values(ALL_DATA).forEach(lvlData => lvlData.forEach(k => arr.push(...k.words)));
+    return arr;
+  };
+
+  const startTest = () => {
+    if (!lvl || kva === null || !mode) return;
+    const kData = ALL_DATA[lvl]?.find(k => k.kva === kva);
+    if (!kData || kData.words.length === 0) { onNotif("❌", "Bu kvada so'z yo'q"); return; }
+    const shuf = [...kData.words].sort(() => Math.random() - 0.5);
+    setWords(shuf);
+    setResult(null);
+    setPhase("running");
+  };
+
+  const handleFinish = useCallback((res) => {
+    setResult(res);
+    const ns = { ...stats };
+    ns.xp = (ns.xp || 0) + res.xp;
+    ns.testsCompleted = (ns.testsCompleted || 0) + 1;
+    ns.totalAnswers = (ns.totalAnswers || 0) + res.results.length;
+    ns.correctAnswers = (ns.correctAnswers || 0) + res.score;
+    ns.completedWords = (ns.completedWords || 0) + res.score;
+    onUpdateStats(ns);
+    onNotif("🎉", `Test yakunlandi! +${res.xp} XP`);
+    setPhase("result");
+  }, [stats, onUpdateStats, onNotif]);
+
+  const handleXP = useCallback((xp) => { onXP(xp); }, [onXP]);
+
+  // Result screen
+  if (phase === "result" && result) {
+    return (
+      <TestResult
+        results={result.results}
+        score={result.score}
+        xp={result.xp}
+        total={words.length}
+        mode={MODES.find(m => m.id === mode)?.title || mode}
+        onRetry={() => { setResult(null); startTest(); }}
+        onBack={() => { setResult(null); setPhase("setup"); }}
+      />
+    );
+  }
+
+  // Running screen
+  if (phase === "running") {
+    const commonProps = { words, onFinish: handleFinish, onXP: handleXP, onNotif };
+    return (
+      <div>
+        <div className="back" onClick={() => setPhase("setup")}>← Test sozlamalari</div>
+        <div className="ptitle">{MODES.find(m => m.id === mode)?.icon} {MODES.find(m => m.id === mode)?.title} Test</div>
+        <p className="psub">{lvl} · {kva}-kva · {words.length} so'z</p>
+        {mode === "written" && <WrittenTest {...commonProps} />}
+        {mode === "bidirectional" && <BidirectionalTest {...commonProps} />}
+        {mode === "choice" && <MultipleChoiceTest {...commonProps} allWords={getAllWords()} />}
+        {mode === "flash" && <FlashCardTest {...commonProps} />}
+        {mode === "matching" && <MatchingTest {...commonProps} />}
+        {mode === "voice" && <VoiceTest {...commonProps} />}
+      </div>
+    );
+  }
+
+  // Setup screen
+  return (
+    <div>
+      <div className="ptitle">🧪 Test</div>
+      <p className="psub">Daraja, kva va test turini tanlang</p>
+
+      {/* Daraja tanlash */}
+      <div className="gc mb20">
+        <div className="fw7 mb14">📍 Daraja tanlang</div>
+        <div className="f gap8 fw">
+          {Object.keys(ALL_DATA).map((l, i) => (
+            <button key={l} className={`btn ${lvl === l ? "bp" : "bs"}`}
+              style={{ padding: "9px 18px", fontSize: 13, animationDelay: (i * 0.05) + "s" }}
+              onClick={() => { setLvl(l); setKva(null); }}>{l}</button>
+          ))}
+        </div>
+      </div>
+
+      {/* Kva tanlash */}
+      {lvl && (
+        <div className="gc mb20">
+          <div className="fw7 mb14">📖 Kva (Dars) tanlang</div>
+          <div style={{ maxHeight: 280, overflowY: "auto", paddingRight: 4 }}>
+            {(ALL_DATA[lvl] || []).map((k, i) => (
+              <div key={k.kva} className={`kc${kva === k.kva ? " sel" : ""}`}
+                style={{ animationDelay: (i * 0.04) + "s" }}
+                onClick={() => setKva(k.kva)}>
+                <div className="kc-num">{k.kva}</div>
+                <div className="f1">
+                  <div className="fw7 sm">{k.kva}-kva</div>
+                  <div className="muted sm mt8">{k.words.length} ta so'z</div>
+                </div>
+                <span className="muted">{kva === k.kva ? "✓" : "→"}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Test rejimi tanlash */}
+      <div className="gc mb20">
+        <div className="fw7 mb16">🎯 Test turini tanlang</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 12 }}>
+          {MODES.map((m, i) => (
+            <div key={m.id}
+              className={`test-mode-card${mode === m.id ? " " + m.color : ""}`}
+              style={{ animationDelay: (i * 0.06) + "s" }}
+              onClick={() => setMode(m.id)}>
+              <div className="test-mode-icon">{m.icon}</div>
+              <div className="test-mode-title">{m.title}</div>
+              <div className="test-mode-desc">{m.desc}</div>
+              <div style={{ marginTop: 10, fontSize: 11, color: "var(--gold)", fontFamily: "'JetBrains Mono'", fontWeight: 700 }}>{m.xp}</div>
+              {mode === m.id && <div style={{ position: "absolute", top: 12, right: 12, fontSize: 16 }}>✓</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Xulosa va boshlash */}
+      <div className="gc">
+        <div className="f ic jb mb16 fw" style={{ gap: 8 }}>
+          <div>
+            <div className="fw7 mb8">Tanlangan:</div>
+            <div className="f gap8 fw">
+              <span className="bdg bdg-c">{lvl || "—"}</span>
+              {kva !== null && <span className="bdg bdg-c">{kva}-kva</span>}
+              {mode && <span className="bdg bdg-p">{MODES.find(m => m.id === mode)?.icon} {MODES.find(m => m.id === mode)?.title}</span>}
+            </div>
+          </div>
+          <div className="tc">
+            <div className="muted sm">So'zlar soni</div>
+            <div style={{ fontFamily: "'Orbitron'", fontSize: 24, fontWeight: 900, color: "var(--cyan)" }}>
+              {(ALL_DATA[lvl]?.find(k => k.kva === kva)?.words.length) || 0}
+            </div>
+          </div>
+        </div>
+        <button className="btn bp w100" style={{ padding: 16, fontSize: 16 }}
+          disabled={!lvl || kva === null || !mode}
+          onClick={startTest}>
+          ⚡ Testni Boshlash
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ════════════════════════════════════════
+// MAVJUD SAHIFALAR (o'zgartirilmagan)
+// ════════════════════════════════════════
 
 function HomePage({ user, stats, go }) {
   const xp = stats.xp || 0, tests = stats.testsCompleted || 0, words = stats.completedWords || 0;
@@ -500,7 +1351,7 @@ function HomePage({ user, stats, go }) {
   return (
     <div>
       <div className="ptitle">Bosh Sahifa</div>
-      <p className="psub">Assalomu alaykum, <b>{user.name}</b>! 🎌</p>
+      <p className="psub">Assalomu alaykum, <b>{user.name}</b>! reyting</p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(130px,1fr))", gap: 14, marginBottom: 28 }}>
         {[
           { l: "XP", v: xp, ic: "⚡", col: "var(--gold)" },
@@ -518,6 +1369,13 @@ function HomePage({ user, stats, go }) {
       <div className="f gap16 mb16 fw">
         <div className="gc f1" style={{ minWidth: 200 }}>
           <div className="f ic jb mb10">
+            <div className="fw7">Test</div><span style={{ fontSize: 26 }}>🧪</span>
+          </div>
+          <div className="muted sm mb14">6 xil test rejimi</div>
+          <button className="btn bp w100" onClick={() => go("test")}>Boshlash →</button>
+        </div>
+        <div className="gc f1" style={{ minWidth: 200 }}>
+          <div className="f ic jb mb10">
             <div className="fw7">Uyga Vazifa</div><span style={{ fontSize: 26 }}>📚</span>
           </div>
           <div className="muted sm mb14">Kva tanlang va topshiring</div>
@@ -528,7 +1386,7 @@ function HomePage({ user, stats, go }) {
             <div className="fw7">Statistika</div><span style={{ fontSize: 26 }}>📊</span>
           </div>
           <div className="muted sm mb14">Natijalarni ko'rish</div>
-          <button className="btn bp w100" onClick={() => go("statistics")}>Ko'rish →</button>
+          <button className="btn bs w100" onClick={() => go("statistics")}>Ko'rish →</button>
         </div>
       </div>
     </div>
@@ -604,18 +1462,15 @@ function VocabularyPage() {
   );
 }
 
-// ── HomeworkPage: barcha state bug'lari to'g'irlandi
 function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
   const [phase, setPhase] = useState("setup");
   const [lvl, setLvl] = useState("1A");
   const [kva, setKva] = useState(null);
   const [typ, setTyp] = useState("written");
-
-  // Test state — ref bilan manage qilamiz (stale closure muammosidan qochish uchun)
   const [wrds, setWrds] = useState([]);
   const [idx, setIdx] = useState(0);
   const [inp, setInp] = useState("");
-  const [sts, setSts] = useState(null); // null | "ok" | "err"
+  const [sts, setSts] = useState(null);
   const [tmr, setTmr] = useState(30);
   const [res, setRes] = useState([]);
   const [listening, setListening] = useState(false);
@@ -625,7 +1480,6 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
 
   const inpRef = useRef();
   const tmrRef = useRef();
-  // Stale closure'dan qochish uchun ref'lar
   const wrdsRef = useRef([]);
   const idxRef = useRef(0);
   const resRef = useRef([]);
@@ -657,7 +1511,6 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
     setTimeout(() => inpRef.current?.focus(), 80);
   };
 
-  // Timer: sts va phase'ni ref orqali o'qiymiz
   useEffect(() => {
     if (phase !== "test") return;
     clearInterval(tmrRef.current);
@@ -665,33 +1518,26 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
     setTmr(30);
     tmrRef.current = setInterval(() => {
       setTmr(t => {
-        if (t <= 1) {
-          clearInterval(tmrRef.current);
-          if (stsRef.current === null) submitAnswer("", true);
-          return 0;
-        }
+        if (t <= 1) { clearInterval(tmrRef.current); if (stsRef.current === null) submitAnswer("", true); return 0; }
         return t - 1;
       });
     }, 1000);
     return () => clearInterval(tmrRef.current);
-  }, [phase, idx]); // idx o'zgarganda qayta ishga tushadi
+  }, [phase, idx]);
 
   const finishTest = useCallback(() => {
     const total = resRef.current.length;
     const correct = resRef.current.filter(r => r.ok).length;
     const totalXP = xpEarnedRef.current;
-
     const ns = { ...stats };
     ns.xp = (ns.xp || 0) + totalXP;
     ns.testsCompleted = (ns.testsCompleted || 0) + 1;
     ns.totalAnswers = (ns.totalAnswers || 0) + total;
     ns.correctAnswers = (ns.correctAnswers || 0) + correct;
     ns.completedWords = (ns.completedWords || 0) + correct;
-
     const rk = S.get("kc_ranking", []);
     rk.push({ name: S.get("kc_user")?.name || "?", xp: totalXP, date: Date.now() });
     S.set("kc_ranking", rk);
-
     onUpdateStats(ns);
     onNotif("🎉", `Vazifa topshirildi! +${totalXP} XP`);
     setPhase("result");
@@ -699,49 +1545,30 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
 
   const submitAnswer = useCallback((answer, fromTimer = false) => {
     clearInterval(tmrRef.current);
-    if (stsRef.current !== null) return; // double-submit himoya
-
+    if (stsRef.current !== null) return;
     const words = wrdsRef.current;
     const i = idxRef.current;
     const w = words[i];
     const m = fuzzyMatch(answer, w.kr);
     const ok = m >= 78;
     const xp = ok ? 10 : 0;
-
     stsRef.current = ok ? "ok" : "err";
     setSts(ok ? "ok" : "err");
-
     const newRes = [...resRef.current, { w, a: answer, ok, m }];
     resRef.current = newRes;
     setRes([...newRes]);
-
     if (ok) {
-      scoreRef.current += 1;
-      xpEarnedRef.current += xp;
-      strRef.current += 1;
-      beep("ok");
-      onXP(xp);
+      scoreRef.current += 1; xpEarnedRef.current += xp; strRef.current += 1;
+      beep("ok"); onXP(xp);
       const pid = Date.now();
       setXpPops(p => [...p, { id: pid, amt: xp }]);
       setTimeout(() => setXpPops(p => p.filter(x => x.id !== pid)), 1700);
-    } else {
-      strRef.current = 0;
-      beep("fail");
-    }
-
+    } else { strRef.current = 0; beep("fail"); }
     setTimeout(() => {
       const nextIdx = i + 1;
-      if (nextIdx >= words.length) {
-        finishTest();
-      } else {
-        idxRef.current = nextIdx;
-        setIdx(nextIdx);
-        stsRef.current = null;
-        setSts(null);
-        setInp("");
-        setTmr(30);
-        setVoiceTx(null);
-        setVoiceScore(null);
+      if (nextIdx >= words.length) { finishTest(); } else {
+        idxRef.current = nextIdx; setIdx(nextIdx); stsRef.current = null;
+        setSts(null); setInp(""); setTmr(30); setVoiceTx(null); setVoiceScore(null);
         setTimeout(() => inpRef.current?.focus(), 60);
       }
     }, 1200);
@@ -763,7 +1590,6 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
     try { rec.start(); } catch { onNotif("❌", "Mikrofon ochilmadi"); }
   };
 
-  // ── Result view
   if (phase === "result") {
     const pct = wrds.length > 0 ? Math.round((scoreRef.current / wrds.length) * 100) : 0;
     return (
@@ -804,7 +1630,6 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
     );
   }
 
-  // ── Voice test view
   if (phase === "voice") {
     const w = wrds[idx];
     if (!w) return null;
@@ -832,10 +1657,7 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
               <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 10, color: "var(--cyan)" }}>{voiceTx}</div>
               <div className="muted sm mb10">Talaffuz: {voiceScore}%</div>
               <div className="tmr-bg">
-                <div className="tmr-fill" style={{
-                  width: voiceScore + "%",
-                  background: voiceScore >= 70 ? "linear-gradient(90deg,var(--green),#00a84a)" : "linear-gradient(90deg,var(--red),#ff6b6b)"
-                }} />
+                <div className="tmr-fill" style={{ width: voiceScore + "%", background: voiceScore >= 70 ? "linear-gradient(90deg,var(--green),#00a84a)" : "linear-gradient(90deg,var(--red),#ff6b6b)" }} />
               </div>
               <div style={{ color: voiceScore >= 70 ? "var(--green)" : "var(--red)", fontWeight: 600, marginBottom: 14 }}>
                 {voiceScore >= 90 ? "🌟 Mukammal!" : voiceScore >= 70 ? "👍 Yaxshi" : "❌ Qayta urinib ko'ring"}
@@ -859,7 +1681,6 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
     );
   }
 
-  // ── Written test view
   if (phase === "test") {
     const w = wrds[idx];
     if (!w) return null;
@@ -905,7 +1726,6 @@ function HomeworkPage({ stats, onUpdateStats, onXP, onNotif }) {
     );
   }
 
-  // ── Setup view
   return (
     <div>
       <div className="ptitle">Uyga Vazifa</div>
@@ -1096,7 +1916,9 @@ function ProfilePage({ user, stats, onUpdateStats, onUpdateUser, onLogout }) {
   );
 }
 
-// ══════════════ MAIN APP ══════════════
+// ════════════════════════════════════════
+// MAIN APP
+// ════════════════════════════════════════
 
 export default function App() {
   const [intro, setIntro] = useState(true);
@@ -1124,7 +1946,7 @@ export default function App() {
     setNotifs(n => [...n, { id, ic, tx }]);
   };
 
-  const addXP = () => {}; // XP popup HomeworkPage ichida boshqariladi
+  const addXP = () => {};
 
   const updateStats = (ns) => { setStats(ns); S.set("kc_stats", ns); };
   const updateUser = (u) => { setUser(u); S.set("kc_user", u); };
@@ -1133,14 +1955,16 @@ export default function App() {
     if (!nameIn.trim()) return;
     const u = { name: nameIn.trim(), nick: nickIn.trim() || nameIn.trim().toLowerCase() };
     setUser(u); S.set("kc_user", u); setModal(false);
-    addNotif("🎌", `Xush kelibsiz, ${u.name}!`);
+    addNotif("reyting", `Xush kelibsiz, ${u.name}!`);
   };
 
   const logout = () => { setUser(null); setModal(true); setPage("home"); setSidebarOpen(false); };
 
+  // ── "Test" bo'limi qo'shildi
   const nav = [
     { id: "home", ic: "🏠", l: "Bosh sahifa" },
     { id: "vocabulary", ic: "📖", l: "Lug'atlar" },
+    { id: "test", ic: "🧪", l: "Test" },
     { id: "homework", ic: "📚", l: "Uyga Vazifa" },
     { id: "statistics", ic: "📊", l: "Statistika" },
     { id: "ranking", ic: "🏆", l: "Reyting" },
@@ -1154,6 +1978,7 @@ export default function App() {
     switch (page) {
       case "home": return <HomePage user={user} stats={stats} go={goPage} />;
       case "vocabulary": return <VocabularyPage />;
+      case "test": return <TestPage stats={stats} onUpdateStats={updateStats} onXP={addXP} onNotif={addNotif} />;
       case "homework": return <HomeworkPage stats={stats} onUpdateStats={updateStats} onXP={addXP} onNotif={addNotif} />;
       case "statistics": return <StatisticsPage stats={stats} />;
       case "ranking": return <RankingPage user={user} stats={stats} />;
@@ -1166,7 +1991,6 @@ export default function App() {
     <>
       <style>{CSS}</style>
 
-      {/* Intro */}
       {intro && (
         <div className="intro-wrap">
           <div className="intro-logo">Korean Center<br />AI Vocabulary</div>
@@ -1175,12 +1999,11 @@ export default function App() {
         </div>
       )}
 
-      {/* Login modal */}
       {modal && (
         <div className="ov">
           <div className="modal">
             <div className="tc mb22">
-              <div style={{ fontSize: 48, marginBottom: 10 }}>🎌</div>
+              <div style={{ fontSize: 48, marginBottom: 10 }}>reyting</div>
               <div style={{
                 fontFamily: "'Orbitron'", fontSize: 20, fontWeight: 900,
                 background: "linear-gradient(135deg,var(--cyan),var(--purple))",
@@ -1201,13 +2024,10 @@ export default function App() {
         </div>
       )}
 
-      {/* Main app */}
       {user && (
         <div className="app">
-          {/* Mobile sidebar overlay */}
           <div className={`sidebar-overlay${sidebarOpen ? " open" : ""}`} onClick={() => setSidebarOpen(false)} />
 
-          {/* Sidebar */}
           <div className={`sidebar${sidebarOpen ? " open" : ""}`}>
             <div className="sb-logo">
               <div className="sb-logo-t">KC AI</div>
@@ -1231,22 +2051,19 @@ export default function App() {
             </div>
           </div>
 
-          {/* Content area */}
           <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
-            {/* Mobile top bar */}
             <div className="mob-topbar">
               <div className="mob-menu-btn" onClick={() => setSidebarOpen(v => !v)}>☰</div>
               <div className="mob-logo">KC AI</div>
               <div className="mob-xp">⚡ {stats.xp || 0}</div>
             </div>
 
-            {/* Page content */}
             <div className="main">{renderPage()}</div>
 
-            {/* Mobile bottom nav */}
             <div className="mob-nav">
               <div className="mob-nav-row">
-                {nav.slice(0, 5).map(n => (
+                {/* Mobil pastki navda 5 ta ko'rsatamiz — Test qo'shildi */}
+                {[nav[0], nav[1], nav[2], nav[4], nav[6]].map(n => (
                   <div key={n.id} className={`mob-ni${page === n.id ? " on" : ""}`}
                     onClick={() => goPage(n.id)}>
                     <span className="nic">{n.ic}</span>
@@ -1259,7 +2076,6 @@ export default function App() {
         </div>
       )}
 
-      {/* Notifications */}
       <div className="notif-container">
         {notifs.slice(-3).map(n => (
           <Notif key={n.id} ic={n.ic} tx={n.tx}
