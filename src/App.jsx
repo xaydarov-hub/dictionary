@@ -1186,7 +1186,7 @@ function TestPage({ stats, onUpdateStats, onXP, onNotif }) {
     { id: "written", icon: "✍️", title: "Yozma", desc: "So'z tarjimasini koreyscha yozing", color: "active", xp: "10 XP/to'g'ri" },
     { id: "bidirectional", icon: "🔄", title: "Ikki tomoni", desc: "UZ→KR va KR→UZ aralash savolar", color: "active-purple", xp: "12 XP/to'g'ri" },
     { id: "choice", icon: "🎯", title: "Ko'p tanlov", desc: "4 variant ichidan to'g'risini toping", color: "active-green", xp: "8 XP/to'g'ri" },
-    { id: "flash", icon: "⚡", title: "Flash kartalar", desc: "Kartani aylantirib o'zingizni baholang", color: "active-gold", xp: "6 XP/to'g'ri" },
+    { id: "flash", icon: "⚡", title: "Flash kartalar", desc: "Kartani aylantirib o'zingizni baholang", color: "active-gold", xp: "0 XP/to'g'ri" },
     { id: "matching", icon: "🧩", title: "Moslashtirish", desc: "O'zbek va koreys so'zlarni juftlang", color: "active-purple", xp: "5 XP/juft" },
     { id: "voice", icon: "🎤", title: "Ovozli", desc: "So'zni koreyscha aytib bering", color: "active", xp: "10 XP/to'g'ri" },
   ];
