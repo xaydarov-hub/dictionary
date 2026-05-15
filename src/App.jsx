@@ -28,7 +28,7 @@ const ALL_DATA = {
   "3B": data3B,
 };
 
-
+// test
 // ── Fuzzy match ──────────────────────────────────────────────────
 const fuzzyMatch = (a, b) => {
   const x = a.trim().toLowerCase();
@@ -1053,9 +1053,7 @@ function VoiceTest({ words, onFinish, onXP, onNotif }) {
       <div className={`qcard${sts==="ok"?" ok":sts==="err"?" err":""}`}>
         <div className="muted sm mb10">Bu so'zni koreyscha ayting:</div>
         <div style={{ fontSize:38, fontWeight:700, color:"var(--cyan)", margin:"16px 0" }}>{w.uz}</div>
-        <button className="btn bs" style={{ padding:"6px 16px", fontSize:12 }} onClick={()=>speak(w.kr)}>
-          🔊 Namuna eshiting
-        </button>
+        
         {sts==="ok" && <div style={{ color:"var(--green)", fontWeight:700, fontSize:20, marginTop:10 }}>✅ {w.kr}</div>}
         {sts==="err" && <div style={{ color:"var(--red)", fontWeight:600, marginTop:10 }}>❌ To'g'risi: <span style={{ color:"var(--cyan)" }}>{w.kr}</span></div>}
       </div>
